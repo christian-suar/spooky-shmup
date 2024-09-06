@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxxr4oaorr8fu"]
+
+[ext_resource type="Script" path="res://boss_bullet.gd" id="1_6mpeq"]
+[ext_resource type="Texture2D" uid="uid://btilkg1wtfheq" path="res://Assets/Player projectiles.png" id="2_i8xw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7aoi"]
+atlas = ExtResource("2_i8xw8")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50ui4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7aoi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_okv4s"]
+
+[node name="BossBullet" type="Area2D" groups=["BossBullet"]]
+script = ExtResource("1_6mpeq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_50ui4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_okv4s")

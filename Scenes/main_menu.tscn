@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://g62wba4ukgfi"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_hcy3v"]
+[ext_resource type="FontFile" uid="uid://bdjymfbwrhdyb" path="res://Assets/Daydream.ttf" id="1_y0nfq"]
+[ext_resource type="Texture2D" uid="uid://b716dd3fq5if6" path="res://Assets/title.png" id="2_56wes"]
+[ext_resource type="Texture2D" uid="uid://b62pxrssq6spn" path="res://Assets/Skybox Castle outside.png" id="2_wh54n"]
+
+[sub_resource type="FontVariation" id="FontVariation_6kata"]
+base_font = ExtResource("1_y0nfq")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hcy3v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("2_56wes")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -44.5
+offset_right = 54.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y0nfq")
+text = "START GAME"
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_6kata")
+text = "QUIT GAME"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 476.0
+offset_bottom = 240.0
+scale = Vector2(1.375, 1.375)
+texture = ExtResource("2_wh54n")
+stretch_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

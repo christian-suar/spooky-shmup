@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbw2i7vx0hyoo"]
+
+[ext_resource type="Script" path="res://vlad.gd" id="1_iqwpm"]
+[ext_resource type="Texture2D" uid="uid://bdce5sa56skne" path="res://Assets/enemy ships/Vlad.png" id="2_38xae"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_keo2p"]
+radius = 34.5254
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l83e"]
+atlas = ExtResource("2_38xae")
+region = Rect2(0, 0, 74, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oiugu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l83e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Vlad" type="Area2D"]
+script = ExtResource("1_iqwpm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_keo2p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oiugu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(222, -1)
+
+[node name="SpinTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="BurstTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]
+[connection signal="timeout" from="BurstTimer" to="." method="_on_burst_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

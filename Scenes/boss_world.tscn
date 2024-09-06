@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyfpqaur6ljoq"]
+
+[ext_resource type="Script" path="res://background.gd" id="1_2hahq"]
+[ext_resource type="Texture2D" uid="uid://b4cp7k3a84pli" path="res://Assets/Skybox Pyramid outside.png" id="2_rgwfs"]
+[ext_resource type="PackedScene" uid="uid://dg7lsv8npfnv" path="res://Scenes/player.tscn" id="3_7sbew"]
+[ext_resource type="PackedScene" uid="uid://bbw2i7vx0hyoo" path="res://Scenes/vlad.tscn" id="4_qlrjh"]
+
+[node name="Boss_World" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_2hahq")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+offset_right = 2996.0
+offset_bottom = 240.0
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("2_rgwfs")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("3_7sbew")]
+position = Vector2(86, 152)
+
+[node name="Vlad" parent="." instance=ExtResource("4_qlrjh")]
+position = Vector2(534, 145)
